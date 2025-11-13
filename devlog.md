@@ -1,0 +1,2 @@
+# Date: 11/13/2025, Time: 2:20 PM
+This is the start of the 2nd project! From what I understood of the instructions, I have to write a program in Prolog that can solve a maze. I plan on making the maze first before I even handle solving it. I'll start on it either today or the next few days. 
