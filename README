@@ -1,0 +1,24 @@
+# CS-4337.006-Project-2
+- Name: Tobenna Nwosu
+- Class: CS 4337.006
+- Tool: SWI-Prolog
+- Programming Language: Prolog
+
+## Files
+- `main.pl`
+	- Main program file. Contains `find_exit/2` as instructed in the project.
+
+- `example.pl`
+	- Show examples of good and bad maps. Provided by the professor, but altered to make it visually readable.
+
+- `test.pl`
+	- Provided by the professor to generate the map.
+
+## Instructions
+- It's pretty simple, if you are using "SWI-Prolog", just click on `File`, then `Consult`, and drag the 3 files (`main.pl`, `example.pl`, and `test.pl`). Now that you have compiled the files, you have two options:
+
+    1. Finding an appropiate path - this will give you a list of actions that represents what moves are needed to reach the exit. 
+        - Code: `simple_map(M), display_map(M), find_exit(M, A).`
+    2. Verifying Actions - If a list of actions is provided, then this will verify if performing the actions will lead to the exit
+        - Code: `simple_map(M), display_map(M), find_exit(M, [right, right]).`
+- As you can see in the two lines of command above, I use `simple_map(M)` as an example, but feel free to replace it with `basic_map(M)` or `basic_map2(M)` to experiment with other maps

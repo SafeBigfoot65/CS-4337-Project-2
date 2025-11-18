@@ -55,3 +55,43 @@ solve_maze_search(Map, NumRows, NumCols, CurrPos, VisitedList, [Action|Remaining
 
     solve_maze_search(Map, NumRows, NumCols, NextPos, [NextPos|VisitedList], Remaining).
 
+%==============================================================================
+% LOGIC FOR TRAVERSING A PATH BASED ON PROVIDED ACTIONS
+% Base case for traversing the path
+traverse_path(_, _, _, CurrPos, [], CurrPos).
+
+% Recursive case for traversing the path
+traverse_path(Map, NumRows, NumCols, CurrPos, [Action|Remaining], FinalPos) :-
+    move(CurrPos, Action, NextPos),
+
+    validate_move(Map, NumRows, NumCols, NextPos),
+
+    traverse_path(Map, NumRows, NumCols, NextPos, Remaining, FinalPos).
+
+%=============================================================================
+
+% Validating the move/action
+validate_move(Map, NumRows, NumCols, coord(R, C)) :-
+    R >= 0, R < NumRows,
+    C >= 0, C < NumCols,
+    
+    cell_type(Map, R, C, CellType),
+    CellType \= w.
+
+    \+ member(coord(R, C), VisitedList).
+
+%=============================================================================
+% find the start coordinates
+find_start(Map, R, C) :-
+    findall(coord(Row, Col), cell_type(Map, Row, Col, s), [coord(R, C)]).
+
+cell_type(Map, R, C, Type) :-
+    nth0(R, Map, Row),
+    nth0(C, Row, Type).
+
+% =============================================================================
+% Defining possible moves
+move(coord(R, C), left, coord(R, C1)) :- C1 is C - 1. % left
+move(coord(R, C), right, coord(R, C1)) :- C1 is C + 1. % right
+move(coord(R, C), up, coord(R1, C)) :- R1 is R - 1. % up
+move(coord(R, C), down, coord(R1, C)) :- R1 is R + 1. % down
